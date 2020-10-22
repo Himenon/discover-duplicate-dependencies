@@ -617,6 +617,11 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
+"@himenon/graph@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@himenon/graph/-/graph-0.1.0.tgz#9591ab54a04cd68548a23410fe1f6ed0af4a3a76"
+  integrity sha512-D9WOboz5UjpF6QTU2SVgAJ+jp+LLEEM3wk6CbntFVXFGiyPQxJFTbVtJg8Mno3cGHEMa9wL8DQmyNi/Y7L2COA==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.0.0.tgz#10602de5570baea82f8afbfa2630b24e7a8cfe5b"

@@ -37,7 +37,7 @@
   "scripts": {
     "build": "yarn clean && tsc -p ./tsconfig.build.json",
     "clean": "rimraf ./lib tsconfig.build.tsbuildinfo",
-    "cli": "node ./lib/cli.js",
+    "cli": "node ./bin/discover-duplicate-dependencies",
     "format": "yarn lint --fix && prettier --write \"**/*.{ts,tsx,js,jsx,json,yml,yaml,html,md}\"",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "yarn lint --fix",
@@ -55,6 +55,7 @@
     }
   },
   "dependencies": {
+    "@himenon/graph": "^0.1.0",
     "chalk": "4.1.0",
     "commander": "6.1.0",
     "glob": "7.1.6",

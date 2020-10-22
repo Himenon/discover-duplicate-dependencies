@@ -15,10 +15,9 @@ export type Output = {
 export interface CLIArguments {
   /** Root Directory */
   root: PathFactory.Type;
-  display: Array<"dev" | "devDep">;
+  kinds: Array<"dev" | "devDep">;
+  firstModuleName: string;
 }
-
-const dotInstalled = dot.checkInstalled();
 
 export const validateCliArguments = (args: commander.Command): CLIArguments => {
   if (typeof args["root"] !== "string" || isInvalidPath(args["root"])) {
@@ -35,7 +34,8 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
   }
   return {
     root: PathFactory.create({ source: args["root"] }),
-    display: ["dev"],
+    kinds: ["dev"],
+    firstModuleName: args["start"],
   };
 };
 
@@ -43,6 +43,7 @@ export const executeCommandLine = (): CLIArguments => {
   commander
     .version(require("../../package.json").version) // add webpack.DefinePlugin
     .option("--root [directory]", "Root directory")
+    .option("--start [package.json name]", "Start library name")
     .option("--display [package.json name]", "dev or devDep")
     .parse(process.argv);
   return validateCliArguments(commander);

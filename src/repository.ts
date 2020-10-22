@@ -1,3 +1,4 @@
+import * as Graph from "@himenon/graph";
 import { PackageJson } from "type-fest";
 import * as Model from "./model";
 
@@ -9,12 +10,22 @@ export const create = (model: Model.Type) => {
     });
   };
 
+  const getCache = () => {
+    return model.getGraphStateData();
+  };
+
   const getPackages = (): PackageJson[] => {
     return Object.values(model.getPackageJsonData());
   };
 
+  const updateCache = (graphState: Graph.State) => {
+    model.updateGraphStateData(graphState);
+  };
+
   return {
+    getCache,
     getPackages,
     getPathList,
+    updateCache,
   };
 };
