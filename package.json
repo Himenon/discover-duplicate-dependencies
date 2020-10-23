@@ -1,6 +1,6 @@
 {
   "name": "discover-duplicate-dependencies",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Extract that the dependencies in package.json are defined in a subordinate module.",
   "keywords": [
     "dependencies",
