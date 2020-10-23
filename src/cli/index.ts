@@ -3,8 +3,7 @@ import * as Graph from "@himenon/graph";
 import * as Model from "../model";
 import * as Repository from "../repository";
 import * as Cli from "./cli";
-import * as Query from "./query";
-import * as fs from "fs";
+import * as Query from "../query";
 import chalk from "chalk";
 
 const updateGraphParams = (graph: Graph.Type, packages: PackageJson[], kind: "dependencies" | "devDependencies" | "peerDependencies") => {
@@ -31,11 +30,13 @@ const main = async () => {
   const packages = repository.getPackages();
   const graph = Graph.create(cacheGraphState);
   updateGraphParams(graph, packages, "dependencies");
-  const result = Query.getDuplicateModules({ graph, firstModuleName: args["firstModuleName"] });
-  fs.writeFileSync("data.json", JSON.stringify(result, null, 2), { encoding: "utf-8" });
+  const duplicateModules = Query.getDuplicateModules(graph, args["targetModuleName"]);
+  // const result = Query.generate(graph, args["targetModuleName"], duplicateModules);
+  console.info(JSON.stringify(duplicateModules, null, 2));
 };
 
 main().catch((error) => {
-  console.error(chalk.red("Error") + `: ${error.message}`);
+  console.error(chalk.red("Error") + `: ${error}`);
+  console.error(error);
   process.exit(1);
 });

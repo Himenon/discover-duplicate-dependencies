@@ -1,6 +1,6 @@
 {
   "name": "discover-duplicate-dependencies",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Extract that the dependencies in package.json are defined in a subordinate module.",
   "keywords": [
     "dependencies",
@@ -55,11 +55,13 @@
     }
   },
   "dependencies": {
-    "@himenon/graph": "^0.1.0",
+    "@himenon/graph": "0.1.0",
+    "@path-tree/collection": "0.3.2",
     "chalk": "4.1.0",
     "commander": "6.1.0",
     "glob": "7.1.6",
-    "is-invalid-path": "1.0.2"
+    "is-invalid-path": "1.0.2",
+    "sort-dependency": "0.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
@@ -86,7 +88,7 @@
     "lint-staged": "10.4.2",
     "prettier": "2.1.2",
     "rimraf": "3.0.2",
-    "sort-package-json": "1.46.0",
+    "sort-package-json": "1.46.1",
     "ts-jest": "26.4.1",
     "ts-node": "9.0.0",
     "type-fest": "0.18.0",
