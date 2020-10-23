@@ -19,10 +19,10 @@ const getPackageJson = (filename: string): PackageJson | undefined => {
 
 export const findPackageJson = (baseDir: string, ignore: string[] = ["**/node_modules/**"]): FoundPackageJson => {
   const searchPatternString = path.join(baseDir, "**", "package.json");
-  console.info(`Search package.json pattern: ${searchPatternString}`);
-  console.info(`Ignore package.json pattern: ${ignore.length ? ignore.join(",") : "Nothing"}`);
+  // console.info(`Search package.json pattern: ${searchPatternString}`);
+  // console.info(`Ignore package.json pattern: ${ignore.length ? ignore.join(",") : "Nothing"}`);
   const packageJsonPathList = Glob.sync(searchPatternString, { ignore });
-  console.info(`Load: ${packageJsonPathList.length} package.json`);
+  // console.info(`Load: ${packageJsonPathList.length} package.json`);
   return packageJsonPathList.reduce<FoundPackageJson>((found, packageJsonPath) => {
     const pkg = getPackageJson(packageJsonPath);
     if (pkg) {

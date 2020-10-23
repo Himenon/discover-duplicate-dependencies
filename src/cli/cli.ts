@@ -2,7 +2,6 @@ import commander from "commander";
 import { SourcePathInvalidError, CliArgumentError } from "./exceptions";
 import * as PathFactory from "./PathFactory";
 import * as path from "path";
-import * as dot from "./dot";
 
 const isInvalidPath = require("is-invalid-path");
 
@@ -15,8 +14,8 @@ export type Output = {
 export interface CLIArguments {
   /** Root Directory */
   root: PathFactory.Type;
-  kinds: Array<"dev" | "devDep">;
-  firstModuleName: string;
+  /** module name */
+  targetModuleName: string;
 }
 
 export const validateCliArguments = (args: commander.Command): CLIArguments => {
@@ -34,17 +33,15 @@ export const validateCliArguments = (args: commander.Command): CLIArguments => {
   }
   return {
     root: PathFactory.create({ source: args["root"] }),
-    kinds: ["dev"],
-    firstModuleName: args["start"],
+    targetModuleName: args["target"],
   };
 };
 
 export const executeCommandLine = (): CLIArguments => {
   commander
-    .version(require("../../package.json").version) // add webpack.DefinePlugin
+    .version(require("../../package.json").version)
     .option("--root [directory]", "Root directory")
-    .option("--start [package.json name]", "Start library name")
-    .option("--display [package.json name]", "dev or devDep")
+    .option("--target [package.json name]", "Start module name")
     .parse(process.argv);
   return validateCliArguments(commander);
 };
